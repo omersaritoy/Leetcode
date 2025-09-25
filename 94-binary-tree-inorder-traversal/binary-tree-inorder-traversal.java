@@ -20,9 +20,9 @@ class Solution {
             return list;
         }
 
-        list.addAll(inorderTraversal(root.left));  // Sol
-        list.add(root.val);                        // Kök
-        list.addAll(inorderTraversal(root.right)); // Sağ
+        list.addAll(inorderTraversal(root.left)); 
+        list.add(root.val);                        
+        list.addAll(inorderTraversal(root.right)); 
 
         return list;
     }
