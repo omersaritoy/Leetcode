@@ -1,26 +1,28 @@
 class MyStack {
-
- int[] arr;
-    int top = -1;
+    Queue<Integer> queue;
 
     public MyStack() {
-        this.arr = new int[10];
+        this.queue = new LinkedList<>();
     }
 
     public void push(int x) {
-        arr[++top] = x;
+        queue.add(x);
+
+        for(int i=0;i<queue.size()-1;i++){
+            queue.add(queue.poll());
+        }
     }
 
     public int pop() {
-        return arr[top--];
+        return queue.poll();
     }
 
     public int top() {
-        return arr[top];
+        return queue.peek();
     }
 
     public boolean empty() {
-        return top == -1;
+        return queue.isEmpty();
     }
 }
 
