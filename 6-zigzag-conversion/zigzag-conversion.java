@@ -1,44 +1,30 @@
 class Solution {
-    public  String convert(String s, int numRows) {
-        if (numRows == 1 || numRows >= s.length()) {
+    public String convert(String s, int numRows) {
+        if (numRows == 1 || numRows >= s.length())
             return s;
-        }
-        int idx = 0, d = 1;
 
-        List<Character>[] rows = getLists(numRows);
-        addCharachters(s, numRows, rows, idx, d);
+        StringBuilder[] rows = new StringBuilder[numRows];
+        for (int i = 0; i < numRows; i++)
+            rows[i] = new StringBuilder();
+
+        int currRow = 0;
+        int direction = 1;
+
+        for (char c : s.toCharArray()) {
+            rows[currRow].append(c);
+
+            if (currRow == 0)
+                direction = 1;
+            else if (currRow == numRows - 1)
+                direction = -1;
+
+            currRow += direction;
+        }
+
         StringBuilder result = new StringBuilder();
-        lastIteration(rows, result);
+        for (StringBuilder row : rows)
+            result.append(row);
 
         return result.toString();
-    }
-
-    private static void lastIteration(List<Character>[] rows, StringBuilder result) {
-        for (List<Character> row : rows) {
-            for (char c : row) {
-                result.append(c);
-            }
-        }
-    }
-
-    private static List<Character>[] getLists(int numRows) {
-        List<Character>[] rows = new ArrayList[numRows];
-
-        for (int i = 0; i < numRows; i++) {
-            rows[i] = new ArrayList<>();
-        }
-        return rows;
-    }
-
-    private static void addCharachters(String s, int numRows, List<Character>[] rows, int idx, int d) {
-        for (char c : s.toCharArray()) {
-            rows[idx].add(c);
-            if (idx == 0) {
-                d = 1;
-            } else if (idx == numRows - 1) {
-                d = -1;
-            }
-            idx += d;
-        }
     }
 }
