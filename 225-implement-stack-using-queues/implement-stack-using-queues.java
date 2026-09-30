@@ -1,31 +1,32 @@
-class MyStack {
-    Queue<Integer> queue;
+
+
+ class MyStack {
+
+    public Queue<Integer> q;
 
     public MyStack() {
-        this.queue = new LinkedList<>();
+        q = new LinkedList<>();
     }
 
     public void push(int x) {
-        queue.add(x);
-
-        for(int i=0;i<queue.size()-1;i++){
-            queue.add(queue.poll());
+        q.add(x);
+        for (int i = 1; i < q.size(); i++) {
+            q.add(q.remove());
         }
     }
 
     public int pop() {
-        return queue.poll();
+        return q.remove();
     }
 
     public int top() {
-        return queue.peek();
+        return q.peek();
     }
 
     public boolean empty() {
-        return queue.isEmpty();
+        return q.isEmpty();
     }
 }
-
 /**
  * Your MyStack object will be instantiated and called as such:
  * MyStack obj = new MyStack();
